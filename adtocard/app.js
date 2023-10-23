@@ -69,7 +69,6 @@ let products = [
     }
 ];
 let listCards=[];
-
 function addProduct(){
     products.forEach((value ,key) =>{
         let newDiv=document.createElement('div');
@@ -78,7 +77,7 @@ function addProduct(){
         <img src="image/${value.image}">
         <div class="title">${value.name}</div>
         <div class="price">${value.price}</div>
-        <button>Add to cart</button>
+        <button onclick="addToCard(${key})">Add to cart</button>
         `;
         list.appendChild(newDiv);
     })
@@ -87,13 +86,13 @@ addProduct();
 openShopping.addEventListener('click',()=>{
     body.classList.add('active');
 })
-closeShopping.addEventListener('click',()=>{
+closeShopping.addEventListener("click",()=>{
     body.classList.remove('active');
 })
 function addToCard(key){
     if(listCards[key] == null){
-        listCards[key] = JSON.paris(JSON.stringify(products[key]));
-        listCards[key].auantity = 1;
+        listCards[key] = JSON.parse(JSON.stringify(products[key]));
+        listCards[key].quantity = 1;
     }
     reloadCard();
 }

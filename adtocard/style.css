@@ -74,9 +74,9 @@ header .shopping span{
 .active .card{
     left: calc(100% - 500px);
 }
-/* .active .container{
+.active .container{
    transform: translateX(-200px);
-} */
+}
 .card h1{
     color: #27aae2;
     font-weight: 100;
