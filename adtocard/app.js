@@ -68,7 +68,6 @@ let products = [
         price:1213
     }
 ];
-let listCards=[];
 function addProduct(){
     products.forEach((value ,key) =>{
         let newDiv=document.createElement('div');
@@ -77,7 +76,7 @@ function addProduct(){
         <img src="image/${value.image}">
         <div class="title">${value.name}</div>
         <div class="price">${value.price}</div>
-        <button onclick="addToCard(${key})">Add to cart</button>
+        <button onclick="addCard(${key})">Add to cart</button>
         `;
         list.appendChild(newDiv);
     })
@@ -89,32 +88,37 @@ openShopping.addEventListener('click',()=>{
 closeShopping.addEventListener("click",()=>{
     body.classList.remove('active');
 })
-function addToCard(key){
-    if(listCards[key] == null){
-        listCards[key] = JSON.parse(JSON.stringify(products[key]));
-        listCards[key].quantity = 1;
-    }
-    reloadCard();
+let listCards=[];
+function addCard(key){
+        listCards[key] = products[key];
+        console.log(listCards);
+        listCards[key].quantity=1;
+    relodcard()
 }
-function reloadCard(){
-    listCard.innerHTML = '';
-    let count = 0;
-    let totalPrice = 0;
-    listCards.forEach((value)=>{
-        totalPrice = totalPrice + value.price;
-        count = count + value.quantity;
-        if(value != null){
-            let newDiv = document.createElement('li');
-            newDiv.innerHTML = `
-                <div><img src="image/${value.image}"></div>
-                <div>${value.name}</div>
-                <div>${value.price}</div>`;
-                listCard.appendChild(newDiv);
-        }
+function relodcard(){
+    listCard.innerHTML="";
+    let count =0;
+    let totalPrice =0;
+    listCards.forEach((value ) =>{
+        totalPrice=totalPrice + value.price;
+        count=count+value.quantity;
+        let newDiv=document.
+        createElement('li');
+        newDiv.innerHTML=`
+        <div><img src="image/${value.image}"></div>
+        <div class="title">${value.name}</div>
+        <div class="price">${value.price}</div>
+        `;
+        listCard.appendChild(newDiv);
     })
-    total.innerText = totalPrice;
-    quantity.innerText = count;
+    total.innerText=totalPrice;
+    quantity.innerText=count;
 }
+
+
+
+
+
 
 
 
